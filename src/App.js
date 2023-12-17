@@ -47,7 +47,7 @@ class App extends Component {
       /*console.log('deleteUser() triggered') this line console delete user () triggered is coming inn the console */
     }
     {
-      /*console.log(`uniqueNo -${uniqueNo}`) this line is comes a unique number delted in console*/
+      /*console.log(`uniqueNo -${uniqueNo}`) this line is comes a unique number deleted in console*/
     }
   }
     {/*The above line is used for the delete user */}
