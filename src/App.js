@@ -3,7 +3,7 @@ import UserProfile from './components/UserProfile'
 
 import './App.css'
 
-const userDetailsList = [
+const initialUserDetailsList = [
   {
     uniqueNo: 1,
     imageUrl: 'https://assets.ccbp.in/frontend/react-js/esther-howard-img.png',
@@ -33,7 +33,7 @@ const userDetailsList = [
 class App extends Component {
   state = {
     searchInput: '',
-    userDetailsList:userDetailsList {/*on delete userDetailsList we write the this line on state changes over time so we wanted to delete be update */}
+    userDetailsList: initialUserDetailsList,
   }
 
   onChangeSearchInput = event => {
@@ -42,8 +42,27 @@ class App extends Component {
     })
   }
 
+  deleteUser = uniqueNo => {
+     {
+      /*console.log('deleteUser() triggered') this line console delete user () triggered is coming inn the console */
+    }
+    {
+      /*console.log(`uniqueNo -${uniqueNo}`) this line is comes a unique number delted in console*/
+    }
+  }
+    {/*The above line is used for the delete user */}
+    const {userDetailsList} = this.state
+    const filteredUsersData = userDetailsList.filter(
+      each => each.uniqueNo !== uniqueNo,
+    )
+    {/*User DetailsList is filtered and updated in state */}
+    this.setState({
+      userDetailsList: filteredUsersData,
+    })
+  }
+
   render() {
-    const {searchInput} = this.state {/*Here filter method show the exact name in userDetailsList we show */}
+    const {searchInput, userDetailsList} = this.state
     const searchResults = userDetailsList.filter(eachUser =>
       eachUser.name.includes(searchInput),
     )
@@ -56,9 +75,13 @@ class App extends Component {
           onChange={this.onChangeSearchInput}
           value={searchInput}
         />
-        <ul className="list-container">  {/*Here above searchResults we write because in the output what name we wanted to show */}
+        <ul className="list-container">
           {searchResults.map(eachUser => (
-            <UserProfile userDetails={eachUser} key={eachUser.uniqueNo} />
+            <UserProfile
+              userDetails={eachUser}
+              key={eachUser.uniqueNo}
+              deleteUser={this.deleteUser}
+            />
           ))}
         </ul>
       </div>
